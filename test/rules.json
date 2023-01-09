@@ -1,0 +1,10 @@
+{
+  "default": ["txOrigin", "gasCosts", "thisLocal"],
+  "sources": {
+    "contracts/Global.sol": {
+      "gasCosts": false,
+      "thisLocal": false,
+      "blockTimestamp": true
+    }
+  }
+}
