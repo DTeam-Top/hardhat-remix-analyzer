@@ -1,3 +1,6 @@
+[![npm](https://img.shields.io/npm/dt/hardhat-remix-analyzer)](https://www.npmjs.com/package/hardhat-remix-analyzer)
+[![npm (scoped)](https://img.shields.io/npm/v/hardhat-remix-analyzer)](https://www.npmjs.com/package/hardhat-remix-analyzer)
+
 # hardhat-remix-analyzer
 
 A plugin using [remix analyzer](https://www.npmjs.com/package/@remix-project/remix-analyzer) for solidity syntax analysis.
