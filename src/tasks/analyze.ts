@@ -4,7 +4,7 @@ import staticAnalysisRunner from "@remix-project/remix-analyzer/src/solidity-ana
 import fs from "fs";
 import { createTable } from "@dteam/st2/dist/stringTable";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { calculateRules, loadRulesFromFile } from "../common";
+import { calculateRules } from "../common";
 
 const analyze = async (hre: HardhatRuntimeEnvironment) => {
   const runner = new staticAnalysisRunner();
@@ -13,16 +13,14 @@ const analyze = async (hre: HardhatRuntimeEnvironment) => {
   console.log("√ compiled contracts.\n");
 
   const compileResults = await hre.artifacts.getBuildInfoPaths();
-  const rules = loadRulesFromFile(
-    `${hre.config.paths.root}/.analyzerRules.json`
-  );
-
   compileResults.forEach((result) => {
     const compiled = JSON.parse(fs.readFileSync(result).toString());
     const source = Object.keys(compiled.input.sources)[0];
-    const modules = calculateRules(source, rules).map((Module: any) => {
-      return { name: new Module().name, mod: new Module() };
-    });
+    const modules = calculateRules(source, hre.config.analyzerRules).map(
+      (Module: any) => {
+        return { name: new Module().name, mod: new Module() };
+      }
+    );
     const reports = runner.runWithModuleList(compiled.output, modules);
     console.log(`\nanalyzing ${source}...`);
     console.log("---");

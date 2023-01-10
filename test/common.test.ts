@@ -1,32 +1,8 @@
 // tslint:disable-next-line no-implicit-dependencies
 import { assert } from "chai";
-import { calculateRules, loadRulesFromFile } from "../src/common";
+import { calculateRules } from "../src/common";
 import { ANALYZER_RULES } from "../src/const";
-
-const rulesForTesting = {
-  default: ["txOrigin", "gasCosts", "thisLocal"],
-  sources: {
-    "contracts/Global.sol": {
-      gasCosts: false,
-      thisLocal: false,
-      blockTimestamp: true,
-    },
-  },
-};
-
-describe("loadRulesFromFile", function () {
-  it("should return empty object for empty string or undefined.", function () {
-    assert.deepEqual(loadRulesFromFile(), {});
-  });
-
-  it("should return empty object for a nonexistent file.", function () {
-    assert.deepEqual(loadRulesFromFile("/a/non/existent/file"), {});
-  });
-
-  it("should return an object for a file.", function () {
-    assert.deepEqual(loadRulesFromFile("test/rules.json"), rulesForTesting);
-  });
-});
+import { rulesForTesting } from "./helpers";
 
 describe("calculateRules", function () {
   it("should return all rules for an empty rule configuration.", function () {

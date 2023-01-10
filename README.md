@@ -53,7 +53,7 @@ hre.analyze(hre);
 
 This plugin needs no configuration to run, in this case, it will apply all rules for all the contracts files.
 
-To customize it, you can create a configuration file named `.analyzerRules.json` under the root directory of your hardhat project. The type of the configuration:
+To customize it, you can add `analyzerRules` to `HardhatUserConfig` in your hardhat project. The type of the configuration:
 
 ```ts
 export type AnalyzerConfiguration = {
@@ -67,7 +67,7 @@ export type AnalyzerConfiguration = {
 Where:
 
 - When it is an empty object like `{}`, then all rules will be applied.
-- `default` defines the rules for all contracts files. it is an array of strings. And the name must be one of the following names:
+- `default` defines the rules for all contracts files. it is an array of strings. Each element must be one of the following names:
 
 ```ts
 export const ANALYZER_RULES: { [rule: string]: any } = {
@@ -101,17 +101,20 @@ export const ANALYZER_RULES: { [rule: string]: any } = {
 
 An example of configuration:
 
-```json
-{
-  "default": ["txOrigin", "gasCosts", "thisLocal"],
-  "sources": {
-    "contracts/Global.sol": {
-      "gasCosts": false,
-      "thisLocal": false,
-      "blockTimestamp": true
-    }
-  }
-}
+```ts
+const config: HardhatUserConfig = {
+  ...,
+  analyzerRules: {
+    default: ["txOrigin", "gasCosts", "thisLocal"],
+    sources: {
+      "contracts/Global.sol": {
+        gasCosts: false,
+        thisLocal: false,
+        blockTimestamp: true,
+      },
+    },
+  },
+};
 ```
 
 ## Usage

@@ -1,6 +1,4 @@
 import { ANALYZER_RULES } from "./const";
-import fs from "fs";
-import { NomicLabsHardhatPluginError } from "hardhat/plugins";
 
 export type AnalyzerConfiguration = {
   default?: string[];
@@ -8,31 +6,6 @@ export type AnalyzerConfiguration = {
     [source: string]: { [rule: string]: boolean };
   };
 };
-
-export function loadRulesFromFile(file?: string) {
-  if (!file || !file.trim() || !fs.existsSync(file)) {
-    return {};
-  }
-
-  try {
-    return JSON.parse(fs.readFileSync(file).toString());
-  } catch (e) {
-    let message;
-
-    if (typeof e === "string") {
-      message = e;
-    } else if (e instanceof Error) {
-      message = e.message;
-    } else {
-      message = JSON.stringify(e);
-    }
-
-    throw new NomicLabsHardhatPluginError(
-      "hardhat-remix-analyzer",
-      `cannot generate rules, reason: ${e}`
-    );
-  }
-}
 
 export function calculateRules(source: string, rules: AnalyzerConfiguration) {
   const defaultRules = calculateDefaultRules(rules);
