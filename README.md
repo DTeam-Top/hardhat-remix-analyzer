@@ -14,7 +14,7 @@ Since it is remix analyzer doing the analyzation job, you can use all the rules 
 ## Installation
 
 ```bash
-npm install hardhat-remix-analyzer @dteam/st2 @remix-project/remix-analyzer
+npm install hardhat-remix-analyzer @dteam/st2 @remix-project/remix-analyzer fast-levenshtein
 ```
 
 Import the plugin in your `hardhat.config.js`:

@@ -51,6 +51,7 @@
   "peerDependencies": {
     "@dteam/st2": "^0.1.0",
     "@remix-project/remix-analyzer": "^0.5.30",
+    "fast-levenshtein": "^3.0.0",
     "hardhat": "^2.0.0"
   }
 }
