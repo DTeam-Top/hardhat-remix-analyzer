@@ -1,6 +1,6 @@
 {
   "name": "hardhat-remix-analyzer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A plugin using remix analyzer for solidity syntax analysis.",
   "repository": "https://github.com/DTeam-Top/hardhat-remix-analyzer",
   "readmeFilename": "README.md",
